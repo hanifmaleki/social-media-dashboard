@@ -58,7 +58,7 @@ function compileModule(module) {
     })
 
     return gulp.series('styles', 'compilePug')
-}
+} 
 
 gulp.task('mainStyle', () => {
     return gulp.src(path.join(config.paths.srcDir, 'modules', 'main.scss'))
@@ -82,3 +82,30 @@ gulp.task('watch', function() {
     gulp.watch(config.paths.srcDir, gulp.series('build'))
 })
 
+// from course
+function browserSyncServe(cb) {
+    browsersync.init({
+        server: {
+            baseDir='.',
+        },
+        notify: {
+            styles: {
+                top: 'auto',
+                bottom: '0',
+            },
+        },
+    })
+    cb()
+}
+function browserSyncReload(cb) {
+    browsersync.reload()
+    cb
+}
+
+function watchTask() {
+    watch('*.html', browserSyncReload)
+    watch(
+        ['src/**/*.scss', 'app/**/*.js'],
+        series(scssTask, jsTask, browserSyncReload)
+    )
+}

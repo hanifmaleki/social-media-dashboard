@@ -1,0 +1,14 @@
+.menu-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    position: fixed;
+    bottom: 75px;
+    right: 75px;
+    background: rgb(255, 207, 0);
+    background: radial-gradient(circle, rgba(255, 207, 0, 1) 0%, rgba(255, 255, 255, 1) 100%);
+
+    &:hover {
+        cursor: pointer;
+    }
+}

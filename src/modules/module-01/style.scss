@@ -1,3 +1,15 @@
-.a-selector {
-    color: orange;
+@import '../variables.scss';
+
+.main {
+    padding: 0 25px;
+    max-width: 110px;
+    margin: 0 auto;
+
+    @include lg {
+        padding: 0;
+    } 
+}
+
+.card {
+    padding: 20px;
 }

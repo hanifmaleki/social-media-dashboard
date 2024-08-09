@@ -1,3 +1,30 @@
+@forward 'variables';
+
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--font-inter);
+    margin: 0;
+    padding:0;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+}
+
+a, a:visited, a:active {
+    text-decoration: none;
+}
+
 .menu-circle {
     width: 70px;
     height: 70px;

@@ -7,6 +7,7 @@ const postcss = require('gulp-postcss')
 const concat = require('gulp-concat')
 const rename = require('gulp-rename')
 const nodemon = require('gulp-nodemon')
+const fs = require('fs');
 
 const config = require('./config')
 const modules = require('./src/js/modules')
@@ -32,14 +33,13 @@ function compileModule(module) {
 
 
     gulp.task('compilePug', () => {
-        console.log(cssExportMap)
- 
         return gulp.src(path.join(src, module.template))
             .pipe(pug({
                 pretty: true,
                 locals: {
                     styles: cssExportMap,
                     getResource: resourceManager.getResource,
+                    modules: modules.getModules()
                 }
             }))
             .pipe(gulp.dest(dest))
@@ -78,15 +78,86 @@ gulp.task('build', (done) => {
     gulp.series('copyJs', 'mainStyle', ...tasks)(done)
 })
 
+tempScssPath = path.join(config.paths.moduleDir, 'temp', 'style.scss')
+
+// Task to create the temporary SCSS file with imports
+gulp.task('create-temp-scss', function (done) {
+    // Ensure the temp directory exists
+    if (!fs.existsSync(path.dirname(tempScssPath))) {
+        fs.mkdirSync(path.dirname(tempScssPath), { recursive: true });
+    }
+
+    // Write the @import statements to the temporary SCSS file
+    var scssContent = modules.getModules().map(module => `@import "../${module.directory}/${module.style}";`).join('\n')
+    scssContent += `\n@import "../main.scss";\n`
+    fs.writeFileSync(tempScssPath, scssContent)
+
+    done();
+});
+
+// Task to compile the temporary SCSS file using Sass
+gulp.task('compile-scss', function () {
+    console.log(tempScssPath)
+    return gulp.src(tempScssPath)
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest(config.paths.outputDir));
+});
+
+// Task to clean up the temporary SCSS file
+gulp.task('clean-temp', function (done) {
+    if (fs.existsSync(tempScssPath)) {
+        fs.rmSync(tempScssPath)
+    }
+
+    if (fs.existsSync(path.dirname(tempScssPath))) {
+        fs.rmdirSync(path.dirname(tempScssPath))
+    }
+
+    done()
+});
+
+gulp.task('process-styles', function(done){
+    return gulp.series('create-temp-scss', 'compile-scss', 'clean-temp')(done)
+})
+
+gulp.task('compile-all-pugs', function() {
+    return gulp.src(path.join(config.paths.moduleDir, '/**/*.pug'))
+        .pipe(pug({
+            pretty: true,
+            locals: {
+                getResource: resourceManager.getResource,
+                modules: modules.getModules()
+            }
+        }))
+        .pipe(gulp.dest(config.paths.outputDir))
+})
+
+
 gulp.task('watch', function() {
-    gulp.watch(config.paths.srcDir, gulp.series('build'))
+    gulp.watch(path.join(config.paths.moduleDir, '**/*.pug'), gulp.series('compile-all-pugs', 'start'))
+    gulp.watch(path.join(config.paths.moduleDir, '/**/*.scss'), gulp.series('process-styles', 'start'))
+    gulp.watch(path.join(config.paths.moduleDir, '**/*.js'), gulp.series('copyJs', 'start'))
+})
+
+gulp.task('start', function (done) {
+    nodemon({
+        script: 'app.js',
+        ext: 'js html css',
+        env: { 'NODE_ENV': 'development' }
+  , done: done
+  })
+    done()
+})
+
+gulp.task('build-all', function(done) {
+    return gulp.series('compile-all-pugs', 'process-styles', 'copyJs', 'start', 'watch')(done)
 })
 
 // from course
 function browserSyncServe(cb) {
     browsersync.init({
         server: {
-            baseDir='.',
+            baseDir: '.',
         },
         notify: {
             styles: {

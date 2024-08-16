@@ -7,11 +7,18 @@ html
         link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin)
         link(href='https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap' rel='stylesheet')
         title Code Free Camp
+
     body
         a(href='/')
             div(id='menu-circle' class='menu-circle', draggable='true') 
 
-        block main
-            
+        div(id='routing' modules=modules)
+
+        ul
+            each module in modules
+               li=module.title 
+        include home/index.pug
+
 script(src=getResource('layout.js'))
+script(src=getResource('routing.js'))
 

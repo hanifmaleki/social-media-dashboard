@@ -6,14 +6,14 @@ from freeCodeCamp.org.
 
 ## Functional Requirements and Notes
 
-Light/Dark Mode toggle
+Light/Dark Mode toggle -- takes system pref by default, but can overwrite with toggle
 - What HTML Markup
-- Switching between light/dark mode via JS
+- Switching between light/dark mode via JS and prefers-color-schemev
 - Three option toggle: dark/ light/ no preference
 
 CSS Variables
 
-prefers-color-scheme
+
 
 Accessibility
 - Use correct heading tasks

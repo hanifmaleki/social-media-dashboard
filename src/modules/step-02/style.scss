@@ -1,0 +1,101 @@
+@use '../_variables.scss' as *;
+
+.s2-main {
+    padding: 0 25px;
+    max-width: 110px;
+    margin: 0 auto;
+
+    @include lg {
+        padding: 0;
+    } 
+}
+
+.s2-toggle {
+    border: none;
+
+    &__wrapper {
+        position: relative;
+        overflow: hidden;
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+
+    &__background{
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        border-radius: 12px;
+        background: linear-gradient(225deg, var(--toggle-bg-start), var(--toggle-bg-end) 98.02%);
+        pointer-events: none;
+    }
+
+    &__button {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        right: 100%;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: var(--dark-bg);
+    }
+}
+
+
+#light:checked ~ .toggle_button {
+    right: 3px;
+    left: calc(100% - 18px);
+}
+
+.s2-dark-label {
+    grid-column: 1 / 2;
+    justify-self: end;
+}
+
+.s2-system-label {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    justify-self: center;
+}
+
+.s2-light-label {
+    grid-column: 3 / 4;
+    justify-self: start;
+}
+
+
+.s2-radio-input {
+    opacity: 0;
+    margin: 0;
+
+}
+
+.s2-header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 36px;
+
+    @include md() {
+        display: block;
+    }
+
+    &__title {
+    }
+
+    &__toggle {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        border: none;
+    }
+
+    &__subtitle {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(dark-text2);
+    }
+}
+
+

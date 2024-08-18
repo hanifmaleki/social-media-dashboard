@@ -1,13 +1,17 @@
-extends ../layout.pug
-
-block main
-    h1 Code Free Camp Social Media Dashboard
-    p This is a practice application based on the course from CodeFreeCamp
+h1 Code Free Camp Social Media Dashboard
+p This is a practice application based on the course from CodeFreeCamp
 
 
-    h2 Technologies
-    ul
-        li express
-        li gulp
-        li pug
-        li scss
+h2 Technologies
+ul
+    li express
+    li gulp
+    li pug
+    li scss
+
+h2 Steps
+ul
+     each module, index in modules
+        li: div(class='layout-tooltip-container')
+            a(href='#' onclick='window.routeToModuleIndex(' + index + ')' alt=module.description) #{module.title} 
+

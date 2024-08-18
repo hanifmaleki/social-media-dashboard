@@ -1,0 +1,21 @@
+html
+    head
+        link(rel='stylesheet' href='main.css')
+
+        link(rel='preconnect' href='https://fonts.googleapis.com')
+        link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin)
+        link(href='https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap' rel='stylesheet')
+        title Code Free Camp
+
+    body
+        script.
+            window.modules = !{JSON.stringify(modules)}
+            console.log('done')
+
+        a(href='/')
+            div(id='menu-circle' class='menu-circle', draggable='true') 
+
+        div(id='routing')
+
+script(src=getResource('routing.js'))
+

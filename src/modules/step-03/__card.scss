@@ -1,0 +1,92 @@
+@use '../_variables.scss' as *;
+
+
+.card {
+    background-color: var(--dark-card);
+    color: var(--dark-text1);
+    width: 200px;
+    text-align: center;
+    padding: 25px;
+    border-radius: 5px;
+
+
+    &--facebook {
+        border-top: 5px solid var(--facebook);
+    }
+
+    &--youtube {}
+
+    &--twitter {}
+
+    &--instagram {}
+
+    &__platform {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 28px;
+    }
+
+    &__icon{
+        margin-right: 8px;
+
+        &--facebook {}
+
+        &--youtube {}
+
+        &--twitter {}
+
+        &--instagram {}
+    }
+
+    &__username {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    &__count {
+        color: var(--light-bg);
+        font-weight: 700;
+        letter-spacing: -2px;
+        line-height: 1;
+        margin-bottom: 4px;
+
+        &--big {
+            font-size: 56px;
+        }
+
+        &--small {}
+    }
+
+    &__followers {
+        margin-bottom: 25px;
+    }
+
+    &__label {
+        font-size: 12px;
+        letter-spacing: 5px;
+        font-weight: 400;
+        color: var(--dark-text1);
+        text-transform: uppercase;
+    }
+
+    &__change {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+
+        &--up {
+            color: var(--lime-green);
+        }
+
+        &--down {
+           color: var(--bright-red) 
+        }
+    }
+
+    &__number {
+        margin-left: 4px;
+    }
+}

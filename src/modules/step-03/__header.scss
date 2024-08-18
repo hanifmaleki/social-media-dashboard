@@ -1,19 +1,30 @@
 @use '../_variables.scss' as *;
 
-.component-body {
-    background-color: var(--dark-bg);
-    color: var(--dark-text2);
-    border: 2px solid blue;
-}
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 36px;
+    align-items: center;
 
-.main {
-    padding: 0 25px;
-    max-width: 110px;
-    margin: 0 auto;
+    &__title {
+        @include md() {
+            width: 100%;
+        } 
+    }
 
-    @include lg {
-        padding: 0;
-    } 
+    &__toggle {
+        margin: 0;
+        @include md() {
+            margin-left: auto;
+        } 
+    }
+
+    &__subtitle {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(dark-text1);
+    }
 }
 
 .toggle {
@@ -21,7 +32,6 @@
     grid-template-columns: 1fr 60px 1fr;
     gap: 5px 8px;
     border: none;
-    margin: 0;
 
     &__wrapper {
         position: relative;
@@ -106,38 +116,3 @@
     }
 }
 
-.header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 36px;
-    align-items: center;
-
-    &__title {
-        @include md() {
-            width: 100%;
-        } 
-    }
-
-    &__toggle {
-        @include md() {
-            margin-left: auto;
-        } 
-    }
-
-    &__subtitle {
-        font-size: 14px;
-        font-weight: 700;
-        color: var(dark-text1);
-    }
-}
-
-.container {
-    padding: 0;
-    max-width: 1111px;
-    margin: 0 auto 46px;
-
-    @include md() {
-        padding: 0 25px;
-    }
-}

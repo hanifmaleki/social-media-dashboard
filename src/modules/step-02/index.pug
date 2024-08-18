@@ -1,84 +1,83 @@
-extends ../layout.pug
+header(class=['header', 'container'])
+    div(class='header__title')
+        h1 Social Modia Dashboard 
+        span(class='header__subtitle') Total Followers: 23,004
 
-block main
-    header(class=['s2-header', 'container'])
-        div(class='s2-header__title')
-            h1 Social Modia Dashboard 
-            span(class='s2-header__subtitle') Total Followers: 23,004
-        fieldset(arial-label='them toggle' class='s2-header__toggle' role='radiogroup')
-            div(class='s2-toggle__wrapper')
-                input(class='s2-radio-input' type='radio' name='theme' id='dark') 
-                input(class='s2-radio-input' type='radio' name='theme' id='system' checked) 
-                input(class='s2-radio-input' type='radio' name='theme' id='light') 
-                span(arial-hidden='true' class='s2-toggle__background') 
-                span(arial-hidden='true' class='s2-toggle__button') 
-            label(class='s2-dark-label' for='dark') Dark
-            label(class='s2-system-label' for='system') System
-            label(class='s2-light-label' for='light') Light
+    fieldset(arial-label='them toggle' class='header__toggle toggle' role='radiogroup')
+        div(class='toggle__wrapper')
+            input(id='dark' type='radio' name='theme') 
+            input(id='system' type='radio' name='theme') 
+            input(id='light' type='radio' name='theme') 
+            span(arial-hidden='true' class='toggle__background') 
+            span(arial-hidden='true' class='toggle__button') 
 
-        div(class='s2-radio-switch__inner')
+        label(for='dark') Dark
+        label(for='system') System
+        label(for='light') Light
 
-
-    div(class='main')
-        | @nathanf
-        1987
-        Followers
-        12 Today
-
-        | @nathanf
-        1044
-        Followers
-        99 Today
-  
-        | @realnathanf
-        11k
-        Followers
-        1099 Today
-
-        Nathan F.
-        8239
-        Subscribers
-        144 Today
+        div(class='radio-switch__inner')
 
 
-        Overview - Today
+div(class='main')
+    | @nathanf
+    1987
+    Followers
+    12 Today
 
-        Page Views
-        87
-        | 3%
+    | @nathanf
+    1044
+    Followers
+    99 Today
 
-        Likes
-        52
-        | 2%
+    | @realnathanf
+    11k
+    Followers
+    1099 Today
 
-        Likes
-        5462
-        | 2257%
-
-        Profile Views
-        52k
-        | 1375%
-
-        Retweets
-        117
-        | 303%
-
-        Likes
-        507
-        | 553%
-
-        Likes
-        107
-        | 19%
-
-        Total Views
-        1407
-        | 12%
+    Nathan F.
+    8239
+    Subscribers
+    144 Today
 
 
-    div(class='attribution')
-        | Challenge by 
-        a(href='https://www.frontendmentor.io?ref=challenge' target='_blank') Frontend Mentor
-        | . Coded by 
-        a(href='#') Hanif
-        |.
+    Overview - Today
+
+    Page Views
+    87
+    | 3%
+
+    Likes
+    52
+    | 2%
+
+    Likes
+    5462
+    | 2257%
+
+    Profile Views
+    52k
+    | 1375%
+
+    Retweets
+    117
+    | 303%
+
+    Likes
+    507
+    | 553%
+
+    Likes
+    107
+    | 19%
+
+    Total Views
+    1407
+    | 12%
+
+
+div(class='attribution')
+    | Challenge by 
+    a(href='https://www.frontendmentor.io?ref=challenge' target='_blank') Frontend Mentor
+    | . Coded by 
+    a(href='#') Hanif
+    |.

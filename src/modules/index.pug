@@ -1,7 +1,6 @@
 html
     head
-        link(rel='stylesheet' href=getResource('main.css'))
-        link(rel='stylesheet' href='style.css')
+        link(rel='stylesheet' href='main.css')
 
         link(rel='preconnect' href='https://fonts.googleapis.com')
         link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin)
@@ -9,16 +8,14 @@ html
         title Code Free Camp
 
     body
+        script.
+            window.modules = !{JSON.stringify(modules)}
+            console.log('done')
+
         a(href='/')
             div(id='menu-circle' class='menu-circle', draggable='true') 
 
-        div(id='routing' modules=modules)
+        div(id='routing')
 
-        ul
-            each module in modules
-               li=module.title 
-        include home/index.pug
-
-script(src=getResource('layout.js'))
 script(src=getResource('routing.js'))
 

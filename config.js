@@ -1,7 +1,7 @@
 const path = require('path')
 
 const srcDir = path.join(__dirname, 'src')
-const outputDir = path.join(__dirname, 'dest')
+const outputDir = path.join(__dirname, 'dist')
 const moduleDirName = 'modules'
 
 module.exports = {

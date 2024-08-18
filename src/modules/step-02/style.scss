@@ -1,6 +1,6 @@
 @use '../_variables.scss' as *;
 
-.s2-main {
+.main {
     padding: 0 25px;
     max-width: 110px;
     margin: 0 auto;
@@ -10,14 +10,32 @@
     } 
 }
 
-.s2-toggle {
+.toggle {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 5px 8px;
     border: none;
+    margin: 0;
 
     &__wrapper {
         position: relative;
         overflow: hidden;
         grid-column: 2 / 3;
         grid-row: 1 / 2;
+        height: 24px;
+
+        input[type="radio"] {
+            opacity: 0;
+            margin: 0 -2px;
+            width: 20px;
+            height: 24px;
+            
+            &:focus ~ .toggle__button {
+                top: 2px;
+                left: 2px;
+                border: 2px solid white;
+            }
+        }
     }
 
     &__background{
@@ -40,62 +58,80 @@
         height: 18px;
         border-radius: 50%;
         background-color: var(--dark-bg);
+        transition: all 150ms;
+    }
+
+    #light:checked ~ .toggle{
+        background-color: green;
+    }
+
+    #light:checked ~ .toggle__button{
+        right: 3px;
+        left: calc(100% - 22px);
+    }
+
+    #system:checked ~ .toggle__button{
+        left: 50%;
+        right: auto;
+        transform: translate(-50%);
+    }
+
+    label {
+        &[for='dark'] {
+            grid-column: 1 / 2;
+            justify-self: end;
+        }
+
+        &[for='system'] {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+            justify-self: start;
+        }
+
+        &[for='light'] {
+            grid-column: 3 / 4;
+            justify-self: start;
+        }
+
+        @include md() {
+            font-size: 14px;
+            align-self: center;
+        }
     }
 }
 
-
-#light:checked ~ .toggle_button {
-    right: 3px;
-    left: calc(100% - 18px);
-}
-
-.s2-dark-label {
-    grid-column: 1 / 2;
-    justify-self: end;
-}
-
-.s2-system-label {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    justify-self: center;
-}
-
-.s2-light-label {
-    grid-column: 3 / 4;
-    justify-self: start;
-}
-
-
-.s2-radio-input {
-    opacity: 0;
-    margin: 0;
-
-}
-
-.s2-header {
+.header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 36px;
-
-    @include md() {
-        display: block;
-    }
+    align-items: center;
 
     &__title {
+        @include md() {
+            width: 100%;
+        } 
     }
 
     &__toggle {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        border: none;
+        @include md() {
+            margin-left: auto;
+        } 
     }
 
     &__subtitle {
         font-size: 14px;
         font-weight: 700;
-        color: var(dark-text2);
+        color: var(dark-text1);
     }
 }
 
+.container {
+    padding: 0;
+    max-width: 1111px;
+    margin: 0 auto 46px;
 
+    @include md() {
+        padding: 0 25px;
+    }
+}

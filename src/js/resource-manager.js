@@ -1,4 +1,5 @@
 const path = require('path')
+const config =  require('../../config')
 
 function getAsset(assetPath) {
     return path.join('/assets', assetPath)
@@ -8,8 +9,8 @@ function getResource(resourcePath) {
     return path.join('/', resourcePath)
 }
 
-function getMainStyle() {
-    return '/style.css'
+function getAsset(assetName) {
+    return path.join(config.paths.assetsDir, assetName)
 }
 
-module.exports = {getAsset, getMainStyle, getResource}
+module.exports = {getAsset, getResource}

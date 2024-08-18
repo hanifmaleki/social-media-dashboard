@@ -2,10 +2,6 @@ const gulp = require('gulp')
 const path = require('path')
 const pug = require('gulp-pug')
 const sass = require('gulp-sass')(require('sass'))
-const postCssModules = require('postcss-modules')
-const postcss = require('gulp-postcss')
-const concat = require('gulp-concat')
-const rename = require('gulp-rename')
 const nodemon = require('gulp-nodemon')
 const fs = require('fs');
 
@@ -24,14 +20,19 @@ gulp.task('copyJs', function() {
             .pipe(gulp.dest(config.paths.outputDir))
 })
 
+gulp.task('copyAssets', () =>{
+    return gulp.src(path.join(config.paths.srcDir, config.paths.assetsDir, '**/*.*'))
+        .pipe(gulp.dest(path.join(config.paths.outputDir, config.paths.assetsDir)))
+})
 
-gulp.task('compile-pugs', function() {
+gulp.task('compilePugs', function() {
     return gulp.src(path.join(config.paths.moduleDir, '/**/*.pug'))
         .pipe(pug({
             pretty: true,
             locals: {
                 getResource: resourceManager.getResource,
-                modules: modules.getModules()
+                getAsset: resourceManager.getAsset,
+                modules: modules.getModules(),
             }
         }))
         .pipe(gulp.dest(config.paths.outputDir))
@@ -39,9 +40,11 @@ gulp.task('compile-pugs', function() {
 
 
 gulp.task('watch', function() {
-    gulp.watch(path.join(config.paths.moduleDir, '**/*.pug'), gulp.series('compile-pugs', 'start'))
-    gulp.watch(path.join(config.paths.moduleDir, '/**/*.scss'), gulp.series('styles', 'start'))
-    gulp.watch(path.join(config.paths.moduleDir, '**/*.js'), gulp.series('copyJs', 'start'))
+    gulp.watch(path.join(config.paths.moduleDir, '**/*.pug'), gulp.series('compilePugs'))
+    gulp.watch(path.join(config.paths.moduleDir, '/**/*.scss'), gulp.series('styles'))
+    gulp.watch(path.join(config.paths.moduleDir, '**/*.js'), gulp.series('copyJs'))
+    gulp.watch(path.join(config.paths.srcDir, config.paths.assetsDir, '**/*.*'), gulp.series('copyAssets'))
+    gulp.watch(['*.js', path.join(config.paths.srcDir, 'js', '*.js')], gulp.series('start'))
 })
 
 gulp.task('start', function (done) {
@@ -55,6 +58,6 @@ gulp.task('start', function (done) {
 })
 
 gulp.task('build', function(done) {
-    return gulp.series('compile-pugs', 'styles', 'copyJs', 'start', 'watch')(done)
+    return gulp.series('compilePugs', 'styles', 'copyJs', 'copyAssets', 'start', 'watch')(done)
 })
 

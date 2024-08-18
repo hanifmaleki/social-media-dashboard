@@ -21,6 +21,13 @@ function getModules() {
             template: 'index',
             style: 'style',
             description: 'Creating the top part of the page',
+        },
+        {
+            title: 'Step-03 Big Cards',
+            directory: 'step-03',
+            template: 'step-03',
+            style: 'step-03',
+            description: 'Desin and implementing big Cards using Block Element Modifier',
         }
     ]
 }

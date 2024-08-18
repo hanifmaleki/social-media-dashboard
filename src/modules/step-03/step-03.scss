@@ -1,0 +1,30 @@
+@use '../_variables.scss' as *;
+
+@import './__header.scss';
+@import './__card.scss';
+
+.component-body {
+    background-color: var(--dark-bg);
+    color: var(--dark-text2);
+    height: 100%;
+}
+
+.main {
+    padding: 0 25px;
+    max-width: 110px;
+    margin: 0 auto;
+
+    @include lg {
+        padding: 0;
+    } 
+}
+
+.container {
+    padding: 0;
+    max-width: 1111px;
+    margin: 0 auto 46px;
+
+    @include md() {
+        padding: 0 25px;
+    }
+}

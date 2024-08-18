@@ -4,6 +4,8 @@ This project is a practice to improve front-end eevelopment skills using the cou
 [Build a Simple Website with HTML, CSS, Javascript](https://www.youtube.com/watch?v=krfUjg0S2uI)
 from freeCodeCamp.org.
 
+A deployed version of the project can be found [here](https://social-media-dashboard-gw7z.onrender.com/).
+
 ## Functional Requirements and Notes
 
 Light/Dark Mode toggle -- takes system pref by default, but can overwrite with toggle

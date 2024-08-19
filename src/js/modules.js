@@ -28,7 +28,14 @@ function getModules() {
             template: 'step-03',
             style: 'step-03',
             description: 'Desin and implementing big Cards using Block Element Modifier',
-        }
+        },
+        {
+            title: 'Step-04 Big Cards Container',
+            directory: 'step-04',
+            template: 'step-04',
+            style: 'step-04',
+            description: 'Implementing big Cards Container',
+        },
     ]
 }
 

@@ -8,6 +8,7 @@ const fs = require('fs');
 const config = require('./config')
 const modules = require('./src/js/modules')
 const resourceManager = require('./src/js/resource-manager')
+const cardManager = require('./src/js/card-manager')
 
 gulp.task('styles', () => {
     return gulp.src(path.join(config.paths.moduleDir, '/**/*.scss'))
@@ -33,6 +34,7 @@ gulp.task('compilePugs', function() {
                 getResource: resourceManager.getResource,
                 getAsset: resourceManager.getAsset,
                 modules: modules.getModules(),
+                bigCards: cardManager.getBigCards(),
             }
         }))
         .pipe(gulp.dest(config.paths.outputDir))

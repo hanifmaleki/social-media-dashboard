@@ -35,6 +35,7 @@ gulp.task('compilePugs', function() {
                 getAsset: resourceManager.getAsset,
                 modules: modules.getModules(),
                 bigCards: cardManager.getBigCards(),
+                smallCards: cardManager.getSmallCards(),
             }
         }))
         .pipe(gulp.dest(config.paths.outputDir))

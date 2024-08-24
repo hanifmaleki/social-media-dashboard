@@ -1,0 +1,39 @@
+include  mixin/big-card.pug
+include  mixin/small-card.pug
+
+section(class='component-body')
+    header(class=['header', 'container'])
+        div(class='header__title')
+            h1 Social Modia Dashboard 
+            span(class='header__subtitle') Total Followers: 23,004
+
+        fieldset(arial-label='them toggle' class='header__toggle toggle' role='radiogroup')
+            div(class='toggle__wrapper')
+                input(id='dark' type='radio' name='theme') 
+                input(id='system' type='radio' name='theme') 
+                input(id='light' type='radio' name='theme') 
+                span(arial-hidden='true' class='toggle__background') 
+                span(arial-hidden='true' class='toggle__button') 
+
+            label(for='dark') Dark
+            label(for='system') System
+            label(for='light') Light
+
+            div(class='radio-switch__inner')
+
+    div(class='container card-grid')
+        each card in bigCards
+            +bigCard(card)
+
+    section(class='container')
+        h2 Overview - Today
+        div(class='card-grid')
+            each card in smallCards
+                +smallCard(card)
+
+    div(class='attribution')
+        | Challenge by 
+        a(href='https://www.frontendmentor.io?ref=challenge' target='_blank') Frontend Mentor
+        | . Coded by 
+        a(href='https://github.com/hanifmaleki/' target='_blank') Hanif
+        |.

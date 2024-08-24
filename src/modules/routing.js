@@ -1,5 +1,6 @@
 url = new URL(window.location.href)
 pathname = url.pathname
+state = history.state
 
 const routingDiv = document.getElementById('routing')
 
@@ -11,11 +12,9 @@ window.routeToModuleIndex = routeToModuleIndex
 
 
 function getModule() {
-    console.log(window.modules)
     var module = window.modules.find(module => pathname.includes(module.directory))
 
-if (!module) {
-        console.log('Could not find module')
+    if (!module) {
         return modules[0]
     }
 
@@ -23,7 +22,6 @@ if (!module) {
 }
 
 function routeToModuleIndex(moduleIndex) {
-    console.log('routeToModuleIndex')
     routeToModule(window.modules[moduleIndex])
 }
 
@@ -35,6 +33,10 @@ function routeToModule(module) {
     } else {
         routingDiv.appendChild(moduleElement)
     }
+
+    // newUrl = new URL(module.directory, url.origin)
+    // console.log(newUrl)
+    // history.pushState(state, module.title, newUrl)
 }
 
 function getRenderedModule(module) {

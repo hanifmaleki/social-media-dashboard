@@ -36,6 +36,13 @@ function getModules() {
             style: 'step-04',
             description: 'Implementing big Cards Container',
         },
+        {
+            title: 'Step-05 Smal Card',
+            directory: 'step-05',
+            template: 'step-05',
+            style: 'step-05',
+            description: 'Implementing small Cards',
+        },
     ]
 }
 

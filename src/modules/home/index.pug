@@ -14,5 +14,5 @@ h2 Steps
 ul
      each module, index in modules
         li: div(class='layout-tooltip-container')
-            a(href='#' onclick='window.routeToModuleIndex(' + index + ')' alt=module.description) #{module.title} 
+            a(onclick='window.routeToModuleIndex(' + index + ')' alt=module.description) #{module.title} 
 

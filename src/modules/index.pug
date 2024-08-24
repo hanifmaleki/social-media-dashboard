@@ -1,6 +1,6 @@
 html
     head
-        link(rel='stylesheet' href='main.css')
+        link(rel='stylesheet' href='/main.css')
 
         link(rel='preconnect' href='https://fonts.googleapis.com')
         link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin)
@@ -10,9 +10,8 @@ html
     body
         script.
             window.modules = !{JSON.stringify(modules)}
-            console.log('done')
 
-        a(href='/')
+        a(onclick='window.routeToModuleIndex(0)')
             div(id='menu-circle' class='menu-circle', draggable='true') 
 
         div(id='routing')

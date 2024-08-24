@@ -2,6 +2,11 @@ h1 {
   color: green;
 }
 
-.class-name {
+.layout-tooltip-container {
     color: cyan;
+    cursor: pointer;
+    
+    &:hover {
+        color: orange;
+    }
 }

@@ -1,0 +1,66 @@
+@use '../_variables.scss' as *;
+
+@forward './__header.scss';
+@forward './__card.scss';
+
+.component-body {
+    background-color: var(--background);
+    color: var(--textcolor);
+    height: 100%;
+}
+
+.main {
+    padding: 0 25px;
+    max-width: 110px;
+    margin: 0 auto;
+
+    @include lg {
+        padding: 0;
+    } 
+}
+
+.container {
+    padding: 0;
+    max-width: 1111px;
+    margin: 0 auto 46px;
+
+    @include md() {
+        padding: 0 25px;
+    }
+}
+
+.card-grid {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    @include lg() {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include md(){
+        grid-template-columns: 1fr;
+    }
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: var(--text-color2);
+}
+
+.attribution {
+    position: fixed;
+    font-size: 12px;
+    bottom: 10px;
+    left: 50%;
+}
+
+.visually-hidden {
+    position: absolute;
+    left: -100000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}

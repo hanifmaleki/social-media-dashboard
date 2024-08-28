@@ -55,28 +55,53 @@ function getRenderedModule(module) {
 function getModuleRenderClass(module) {
     const template = module.template ?? 'index'
     const style = module.style ?? 'style' 
+    const script = module.script ?? 'index'
 
     return class extends HTMLElement {
         constructor() {
             super()
             this.attachShadow({ mode: 'open' })
-
-            Promise.all([
+            const fetches = [
                 fetch(module.directory + '/' + template + '.html')
-                    .then(response => response.text())
-                    .then(html => {
-                        const template = document.createElement('template')
-                        template.innerHTML = html
-                        this.shadowRoot.appendChild(template.content.cloneNode(true))
-                    }),
+                .then(response => response.text())
+                .then(html => {
+                    const template = document.createElement('template')
+                    template.innerHTML = html
+                    this.shadowRoot.appendChild(template.content.cloneNode(true))
+                })
+                .then(() => {
+                    if (module.script) {
+                        // fetches.push(
+                            fetch(`${module.directory}/${script}.js`)
+                            .then(response => response.text())
+                            .then(script => {
+                                //const scriptElement = document.createElement('script')
+                                // scriptElement.textContent = script
+                                // console.log(this.shadowRoot.firstChild)
+                                // this.shadowRoot.firstChild.appendChild(scriptElement)
+                                // this.shadowRoot.appendChild(scriptElement)
+                                eval(script)
+                            })
+                        // )
+                    }
+                }),
                 fetch(`${module.directory}/${style}.css`)
-                    .then(response => response.text())
-                    .then(css => {
-                        const styleElement = document.createElement('style')
-                        styleElement.textContent = css
-                        this.shadowRoot.appendChild(styleElement)
-                    })
-            ])
+                .then(response => response.text())
+                .then(css => {
+                    const styleElement = document.createElement('style')
+                    styleElement.textContent = css
+                    this.shadowRoot.appendChild(styleElement)
+                }),
+            ]
+
+
+            Promise.all(fetches)
+
+
+        }
+
+        connectedCallBack() {
+            console.log('connetedCallback')
         }
     }
 }

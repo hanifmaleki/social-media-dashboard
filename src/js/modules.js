@@ -50,6 +50,14 @@ function getModules() {
             style: 'step-06',
             description: 'Implementing small card container',
         },
+        {
+            title: 'Step-07 Light mode switch',
+            directory: 'step-07',
+            template: 'step-07',
+            style: 'step-07',
+            script: 'step-07',
+            description: 'Implementing dark/light mode based on the system settings',
+        },
     ]
 }
 

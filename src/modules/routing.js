@@ -55,34 +55,28 @@ function getRenderedModule(module) {
 function getModuleRenderClass(module) {
     const template = module.template ?? 'index'
     const style = module.style ?? 'style' 
-    const script = module.script ?? 'index'
 
     return class extends HTMLElement {
         constructor() {
             super()
             this.attachShadow({ mode: 'open' })
+            let documentFragment = null
             const fetches = [
                 fetch(module.directory + '/' + template + '.html')
                 .then(response => response.text())
                 .then(html => {
-                    const template = document.createElement('template')
+                    const template = document.createElement('div')
                     template.innerHTML = html
-                    this.shadowRoot.appendChild(template.content.cloneNode(true))
+                    this.shadowRoot.appendChild(template)
                 })
                 .then(() => {
                     if (module.script) {
-                        // fetches.push(
-                            fetch(`${module.directory}/${script}.js`)
-                            .then(response => response.text())
-                            .then(script => {
-                                //const scriptElement = document.createElement('script')
-                                // scriptElement.textContent = script
-                                // console.log(this.shadowRoot.firstChild)
-                                // this.shadowRoot.firstChild.appendChild(scriptElement)
-                                // this.shadowRoot.appendChild(scriptElement)
-                                eval(script)
+                        import(`./${module.directory}/${module.script.filename}.js`)
+                            .then((cls) => {
+                                const DynamicClass = cls[module.script.className]
+                                const instance = new DynamicClass(this.shadowRoot)
+                                instance.init()
                             })
-                        // )
                     }
                 }),
                 fetch(`${module.directory}/${style}.css`)
@@ -94,10 +88,7 @@ function getModuleRenderClass(module) {
                 }),
             ]
 
-
             Promise.all(fetches)
-
-
         }
 
         connectedCallBack() {

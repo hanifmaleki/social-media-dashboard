@@ -1,0 +1,14 @@
+mixin bigCard(card)
+    section(class=card.cardClass)
+        div(class='card__platform')
+            img(class='card__icon' src=getAsset(card.icon.asset), alt=card.icon.alt)
+            div(class='card__username')=card.username
+        
+        div(class='card__followers')
+            div(class='card__count card__count--big')=card.count
+            
+            div(class='card__label') Followers
+
+        div(class=card.change.class) 
+            img(src=getAsset(card.change.icon) alt=card.change.alt)
+            div(class='card__number')=card.change.number

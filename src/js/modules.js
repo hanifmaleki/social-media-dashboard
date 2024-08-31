@@ -55,8 +55,18 @@ function getModules() {
             directory: 'step-07',
             template: 'step-07',
             style: 'step-07',
-            script: 'step-07',
             description: 'Implementing dark/light mode based on the system settings',
+        },
+        {
+            title: 'Step-08 Theme switch toggle',
+            directory: 'step-08',
+            template: 'step-08',
+            style: 'step-08',
+            script: {
+                filename: 'step-08',
+                className: 'Step08',
+            },
+            description: 'Implementing theme changes by toggle',
         },
     ]
 }

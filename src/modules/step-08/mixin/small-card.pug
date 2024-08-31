@@ -1,0 +1,11 @@
+mixin smallCard(card)
+    section(class='card card-small')
+        div(class='card__subtitle') card.previewed
+        
+        img(class='card__icon' src=getAsset(card.icon.asset), alt=card.icon.alt)
+
+        div(class='card__count card__count--small')=card.count
+
+        div(class=card.change.class)
+            img(src=getAsset(card.change.icon) alt=card.change.alt)
+            div(class='card__number')=card.change.number
